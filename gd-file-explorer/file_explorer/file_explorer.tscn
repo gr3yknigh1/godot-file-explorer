@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://file_explorer/file_explorer.gd" type="Script" id=1]
+
+[node name="FileExplorer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HiddenItems" type="CheckButton" parent="VBoxContainer"]
+margin_right = 199.0
+margin_bottom = 40.0
+size_flags_horizontal = 0
+pressed = true
+text = "View hidden items"
+
+[node name="ContentList" type="ItemList" parent="VBoxContainer"]
+margin_top = 44.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+fixed_icon_size = Vector2( 16, 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="toggled" from="VBoxContainer/HiddenItems" to="." method="_on_HiddenItems_toggled"]
+[connection signal="item_activated" from="VBoxContainer/ContentList" to="." method="_on_ContentList_item_activated"]
