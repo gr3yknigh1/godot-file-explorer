@@ -112,7 +112,10 @@ func change_current_directory(dir_path: String) -> void:
 			var dir := Directory.new()
 			
 			if dir.open(dir_path) != OK:
-				print("Can't open as directory: '%s'" % dir_path)
+				if dir_path.get_extension() == "exe":
+					OS.execute(dir_path, [], false)
+				else:
+					print("Can't open as directory: '%s'" % dir_path)
 				return
 			current_path = dir_path
 	update_content_list()
